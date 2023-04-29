@@ -56,7 +56,7 @@ while t > 0:
     custo_biblioteca = int(B)
     custo_estrada = int(E)
     custo_total = 0
-
+ 
     if int(B) <= int(E) or m == 0:
         custo_total = int(N) * int(B)
     elif int(B) > int(E):
