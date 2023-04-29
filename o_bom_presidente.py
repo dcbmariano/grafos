@@ -5,6 +5,7 @@
 # https://www.pythonpool.com/adjacency-list-python/
 # https://www.studytonight.com/python-howtos/how-to-add-a-list-to-a-set-in-python#:~:text=Whereas%2C%20sets%20in%20Python%20are,collection%20of%20distinct%20hashable%20objects.
 # https://github.com/SamuelEduardoSilva/algoritmos/blob/master/Implementa%C3%A7%C3%B5es%20-%20Teoria%20dos%20Grafos/Implementa%C3%A7%C3%A3o%20BFS/BFS.cpp # me deu a dica de como ler os arquivos
+
 debug = False
 
 import collections
