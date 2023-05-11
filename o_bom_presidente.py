@@ -236,6 +236,8 @@ while t > 0:  # enquanto houver grafos
         # custo total = custo_singlegrafos + custo_subgrafos
         # determina os subgrafos
         subgrafos = []
+
+        # parte crítica -------------------------------
         for i in range(N):
             if len(lista_de_adjacencias[i]) > 0:
                 subgrafos.append(sorted(busca_em_largura(lista_de_adjacencias, i, mostrar_caminho=False)))
@@ -244,7 +246,8 @@ while t > 0:  # enquanto houver grafos
         # gambiarra suprema pra criar listas unicas
         subgrafos = [tuple(i) for i in subgrafos]
         subgrafos_unicos = set(subgrafos)
-
+        # fim parte crítica -------------------------------
+        
         #print("\nVértices vazios:", vazio)
 
         # custo_subgrafos = (n_subgrafos * custo_biblioteca + custo_estrada * elementos_em_subgrafos)
