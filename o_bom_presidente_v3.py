@@ -23,19 +23,12 @@ vertices = []
 
 def ad_vertice(vertice):
     ''' Adiciona um vertice no grafo '''
-    lista_de_adjacencias[vertice] = []
+    lista_de_adjacencias[vertice] = set()
 
 def ad_aresta(node1, node2):
     ''' Adiciona uma aresta no grafo '''
-    temp = []  
-    temp.extend(lista_de_adjacencias[node1])
-    temp.append(node2) 
-    lista_de_adjacencias[node1] = set(temp)
-
-    temp = []  
-    temp.extend(lista_de_adjacencias[node2])
-    temp.append(node1)
-    lista_de_adjacencias[node2] = set(temp)
+    lista_de_adjacencias[node1].add(node2)
+    lista_de_adjacencias[node2].add(node1)
        
 def cria_grafo():
     ''' Fachada para criação de um novo grafo '''
@@ -70,28 +63,47 @@ while t > 0:
     elif int(B) > int(E):
         
         # para todo o vértice
-        visitado = {}
+        # visitado = {}
+        # componente = {}
+        # qtd_componentes = 0
+
+        # # preenche tudo como vazio 
+        # for i in range(N):
+        #     visitado[i] = 0
+        #     componente[i] = -1
+
+        # # detectando componentes      
+        # for i in range(N): 
+        #     if len(lista_de_adjacencias[i]) > 0: # analisa apenas vertices com arestas
+        #         if visitado[i] == 0:
+        #             visitado[i] = 1
+        #             componente[i] = i
+        #             qtd_componentes += 1
+
+        #             visitados = busca_em_largura(lista_de_adjacencias, i)
+        #             for j in visitados:
+        #                 visitado[j] = 1
+        #                 componente[j] = i
         componente = {}
         qtd_componentes = 0
+        visitados = set()
 
-        # preenche tudo como vazio 
         for i in range(N):
-            visitado[i] = 0
-            componente[i] = -1
+            if i not in visitados:
+                qtd_componentes += 1
+                c = qtd_componentes
+                componente[i] = c
+                visitados.add(i)
+                fila = collections.deque([i])
 
-        # detectando componentes      
-        for i in range(N): 
-            if len(lista_de_adjacencias[i]) > 0: # analisa apenas vertices com arestas
-                if visitado[i] == 0:
-                    visitado[i] = 1
-                    componente[i] = i
-                    qtd_componentes += 1
-
-                    visitados = busca_em_largura(lista_de_adjacencias, i)
-                    for j in visitados:
-                        visitado[j] = 1
-                        componente[j] = i
-
+                while fila:
+                    v = fila.popleft()
+                    for u in lista_de_adjacencias[v]:
+                        if u not in visitados:
+                            componente[u] = c
+                            visitados.add(u)
+                            fila.append(u)
+                            
         tamanho_componente = {}
         singleton = 0
 
@@ -114,3 +126,4 @@ while t > 0:
     print(custo_total)
 
 # resultado esperado: [0] 805 [1] 184 [2] 80 [3] 5 [4] 204
+
