@@ -63,47 +63,47 @@ while t > 0:
     elif int(B) > int(E):
         
         # para todo o vértice
-        # visitado = {}
-        # componente = {}
-        # qtd_componentes = 0
-
-        # # preenche tudo como vazio 
-        # for i in range(N):
-        #     visitado[i] = 0
-        #     componente[i] = -1
-
-        # # detectando componentes      
-        # for i in range(N): 
-        #     if len(lista_de_adjacencias[i]) > 0: # analisa apenas vertices com arestas
-        #         if visitado[i] == 0:
-        #             visitado[i] = 1
-        #             componente[i] = i
-        #             qtd_componentes += 1
-
-        #             visitados = busca_em_largura(lista_de_adjacencias, i)
-        #             for j in visitados:
-        #                 visitado[j] = 1
-        #                 componente[j] = i
+        visitado = {}
         componente = {}
         qtd_componentes = 0
-        visitados = set()
 
+        # preenche tudo como vazio 
         for i in range(N):
-            if i not in visitados:
-                qtd_componentes += 1
-                c = qtd_componentes
-                componente[i] = c
-                visitados.add(i)
-                fila = collections.deque([i])
+            visitado[i] = 0
+            componente[i] = -1
 
-                while fila:
-                    v = fila.popleft()
-                    for u in lista_de_adjacencias[v]:
-                        if u not in visitados:
-                            componente[u] = c
-                            visitados.add(u)
-                            fila.append(u)
-                            
+        # detectando componentes      
+        for i in range(N): 
+            if len(lista_de_adjacencias[i]) > 0: # analisa apenas vertices com arestas
+                if visitado[i] == 0:
+                    visitado[i] = 1
+                    componente[i] = i
+                    qtd_componentes += 1
+
+                    visitados = busca_em_largura(lista_de_adjacencias, i)
+                    for j in visitados:
+                        visitado[j] = 1
+                        componente[j] = i
+        # componente = {}
+        # qtd_componentes = 0
+        # visitados = set()
+
+        # for i in range(N):
+        #     if i not in visitados:
+        #         qtd_componentes += 1
+        #         c = qtd_componentes
+        #         componente[i] = c
+        #         visitados.add(i)
+        #         fila = collections.deque([i])
+
+        #         while fila:
+        #             v = fila.popleft()
+        #             for u in lista_de_adjacencias[v]:
+        #                 if u not in visitados:
+        #                     componente[u] = c
+        #                     visitados.add(u)
+        #                     fila.append(u)
+
         tamanho_componente = {}
         singleton = 0
 
