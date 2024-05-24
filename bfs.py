@@ -31,5 +31,6 @@ la = {
 
 # print(la)
 c,d = bfs(la, 1)
-print(c)
-print(d)
+print(c)  # caminho
+print(d)  # distancias
+
