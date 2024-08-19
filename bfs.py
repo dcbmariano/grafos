@@ -1,7 +1,7 @@
 from collections import deque
 
 def bfs(grafo, inicio, caminho = []):
-    """ Busca em profundidade """
+    """ Busca em largura """
     visitados = set()  
     fila = deque([inicio])  
     niveis = { i:-1 for i in grafo}
@@ -14,7 +14,7 @@ def bfs(grafo, inicio, caminho = []):
             caminho.append(vertice)
             
             for vizinho in grafo[vertice]:
-                if vizinho not in visitados:
+                if vizinho not in visitados and vizinho not in fila:
                     fila.append(vizinho)
                     niveis[vizinho] = niveis[vertice]+1
 
